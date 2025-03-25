@@ -2,6 +2,10 @@ from flask import Flask, request, render_template_string, send_file
 import cv2
 import numpy as np
 from io import BytesIO
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -164,7 +168,7 @@ def decrypt():
          </div>
       </body>
     </html>
-    ''', decrypted_msg=decrypted_msg)
+    ''', decrypted_msg=decrypted_msg + os.getenv('FLASK_CONFIG'))
 
 if __name__ == '__main__':
     app.run(debug=True)
